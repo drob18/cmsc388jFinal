@@ -1,0 +1,40 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <form action="/" class="form-inline my-2 my-lg-0" method="POST">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-info">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            {{ form.csrf_token }}
+            {{ form.search_query(class="form-control", placeholder="Search") }}
+
+            {% if form.search_query.errors %}
+            <div class="alert alert-warning" role="alert">
+                {% for error in form.search_query.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {{ form.submit(class="btn btn-outline-success") }}
+        </form>
+        <h2>Welcome! Your reviews will help many other movie lovers find out the ratings of their favorite movies! </h2>
+    </div>
+        
+        <div>
+            <img src="https://www.kuhnphoto.net/img-get/I0000gPLtfmzMDYw/s/500/400/1R42-014x.jpg">
+        </div>
+        <div>
+            <img src="https://i.pinimg.com/originals/64/cc/68/64cc681d1f97b4a19879203f1ae697e1.jpg">
+        </div>
+</div>
+{% endblock %}
